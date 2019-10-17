@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        function SwitchButton(status) {
+            this.status = status;
+            this.checkButton = function () {
+                return this.status;
+            };
+            this.turnOn = function () {
+                this.status = true;
+                document.getElementById("show").innerHTML = 'Đã Bật Công Tắc';
+            };
+            this.turnOff = function () {
+                this.status = false;
+                document.getElementById("show").innerHTML = 'Đã Tắt Công Tắc';
+            };
+            this.connectLamp = function (ElectricLamp) {
+                if(this.status){
+                    document.getElementById("show").innerHTML = 'Đã Bật Công Tắc';
+                }
+            }
+        };
+
+        let congtac = new SwitchButton(false);
+
+        function ElectricLamp(status) {
+            this.status = status;
+            this.checkLamp = function () {
+                if(congtac.status){
+                    document.getElementById("show").innerHTML = 'Đèn đã sáng';
+                } else {
+                    document.getElementById("show").innerHTML = 'Đèn Tắt vì chưa bật công tác';
+
+                }
+
+            }
+
+        };
+
+        let den = new ElectricLamp(false);
+
+
+
+    </script>
+
+</head>
+<body>
+<button onclick="congtac.turnOn()">Bật Công tác</button>
+<button onclick="congtac.turnOff()">Tắt Công tác</button>
+<button onclick="den.checkLamp()">Xem Đền Sáng</button>
+<p id="show"></p>
+
+</body>
+</html>
